@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/js/angular.js"></script>
+    <script src="/js/studentcourse.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Student Name</th>
+            <th>Student Age</th>
+            <th>Student Location</th>
+            <th>Action</th>
+        </tr>
+        <tr ng-repeat="x in students">
+            <td>{{x.studentid}}</td>
+            <td>{{x.studentName}}</td>
+            <td>{{x.studentAge}}</td>
+            <td>{{x.studentLocation}}</td>
+            <td>
+                <a href="" ng-click="viewStudent(student)">View</a>
+                <a href="" ng-click="editStudent(student)">Delete</a>
+                <a href="" ng-click="deleteStudent(student)">Edit</a>
+            </td>
+        </tr>
+    </table>
+    <form method="POST" action="/save_st">
+        <br>
+        <input type="hidden" ng-model="studentid">
+        <br> Student name:
+        <br>
+        <input type="text" ng-model="studentName"></x>
+        <br> Student age:
+        <br>
+        <input type="text" ng-model="studentAge">
+        <br> Student location:
+        <br>
+        <input type="text" ng-model="studentLocation">
+        <br>
+        <input type="submit" value="Creat" ng-click="createStudent(student)">
+    </form>
+</body>
+
+</html>
