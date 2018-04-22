@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add Student</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/js/angular.js"></script>
+    <script src="/js/studentcourse.js"></script>
+</head>
+<style type="text/css">
+		
+	*{
+		margin: 0px;
+		padding: 0px;
+	}
+
+	form{
+		margin-left: 10px;
+	}
+
+</style>
+<body>
+    <h1>Add Student</h1>
+    <form method="GET" action="/index">
+        <br>
+        <input type="hidden" name="studentid" ng-model="studentid">
+        <br> Student name:
+        <br>
+        <input type="text" ng-model="studentName">
+        </x>
+        <br> Student age:
+        <br>
+        <input type="text" ng-model="studentAge">
+        <br> Student location:
+        <br>
+        <input type="text" ng-model="studentLocation">
+        <br>
+        <input type="submit" value="Creat" ng-click="createStudent(student)">
+    </form>
+</body>
+
+</html>

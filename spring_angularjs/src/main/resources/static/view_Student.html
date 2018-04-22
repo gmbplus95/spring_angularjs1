@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
     <title>Insert title here</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -11,36 +10,21 @@
     <script src="/js/angular.js"></script>
     <script src="/js/studentcourse.js"></script>
 </head>
-<style type="text/css">
-    *{
-        margin:0px;
-        padding: 0px;
-    }
-    
-
-</style>
 <body ng-app="myApp" ng-controller="myCtrl">
-    <table class="table">
+	<table class="table">
         <tr>
             <th>ID</th>
             <th>Student Name</th>
             <th>Student Age</th>
             <th>Student Location</th>
-            <th>Action</th>
         </tr>
-        <tr ng-repeat="student in students">
-            <td>{{student.studentid}}</td>
-            <td>{{student.studentName}}</td>
-            <td>{{student.studentAge}}</td>
-            <td>{{student.studentLocation}}</td>
-            <td>
-                <a href="" ng-click="viewStudent(student.studentid)">View</a>
-                <a href="" ng-click="deleteStudent(student.studentid)">Delete</a>
-                <a ng-href="editStudent/{{student.studentid}}" ng-click="editStudent(student)">Edit</a>
-            </td>
+        <tr >
+            <td>{{students1.studentid}}</td>
+            <td>{{students1.studentName}}</td>
+            <td>{{students1.studentAge}}</td>
+            <td>{{students1.studentLocation}}</td>
+            
         </tr>
     </table>
-    <a href="/add_student">Thêm Sinh Viên</a>
 </body>
-
 </html>
