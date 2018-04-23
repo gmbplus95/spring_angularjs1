@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/js/angular.js"></script>
-    <script src="/js/studentcourse.js"></script>
+    <script src="/js/addstudent.js"></script>
 </head>
 <style type="text/css">
 		
@@ -23,23 +23,22 @@
 	}
 
 </style>
-<body>
+<body ng-app="myApp" ng-controller="myCtrl2">
     <h1>Add Student</h1>
-    <form method="GET" action="/index">
-        <br>
-        <input type="hidden" name="studentid" ng-model="studentid">
+    <form method="POST" action="/add_student">
+
         <br> Student name:
         <br>
-        <input type="text" ng-model="studentName">
+        <input type="text" name="studentName"  ng-model="StModel.studentName">
         </x>
         <br> Student age:
         <br>
-        <input type="text" ng-model="studentAge">
+        <input type="text" name="studentAge"  ng-model="StModel.studentAge">
         <br> Student location:
         <br>
-        <input type="text" ng-model="studentLocation">
+        <input type="text"  name="studentLocation"  ng-model="StModel.studentLocation">
         <br>
-        <input type="submit" value="Creat" ng-click="createStudent(student)">
+        <input type="submit" value="Create">
     </form>
 </body>
 

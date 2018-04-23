@@ -1,7 +1,7 @@
 var myApp = angular.module('myApp', []);
+
 myApp.controller('myCtrl', function($scope,$rootScope, $http,$window) {
-	var myJson ={};
-    $http.get("http://localhost:8080/getAllStudent")
+    $http.get("http://localhost:8082/getAllStudent")
     .then(function(response) {
         $scope.students= response.data;       
     },
@@ -14,9 +14,9 @@ myApp.controller('myCtrl', function($scope,$rootScope, $http,$window) {
     $scope.deleteStudent = function(id) {
                     $http({
                         method : 'GET',
-                        url : 'http://localhost:8080/deleteStudent/'+id,
+                        url : 'http://localhost:8082/deleteStudent/'+id,
                     }).then(function(response) {
-                    	$window.location.href='http://localhost:8080';
+                    	$window.location.href='http://localhost:8082';
     						},function(errResponse){
 				            console.error('Error while fetching Users');
 				            deferred.reject(errResponse);
@@ -27,10 +27,10 @@ myApp.controller('myCtrl', function($scope,$rootScope, $http,$window) {
 	$scope.viewStudent = function(id) {
                     $http({
                         method : 'GET',
-                        url : 'http://localhost:8080/viewStudent/'+id,
+                        url : 'http://localhost:8082/viewStudent/'+id,
                     }).then(function(response) {
                     	$window.localStorage.setItem('testObject',JSON.stringify(response.data));	
-                    	$window.location.href='http://localhost:8080/viewStudent';
+                    	$window.location.href='http://localhost:8082/viewStudent';
                     
     						},function(errResponse){
 				            console.error('Error while fetching Users');
@@ -40,7 +40,7 @@ myApp.controller('myCtrl', function($scope,$rootScope, $http,$window) {
                     
                     $http({
                         method : 'GET',
-                        url : 'http://localhost:8080/viewStudent2/'+id,
+                        url : 'http://localhost:8082/viewStudent2/'+id,
                     }).then(function(response) {
                     	$window.localStorage.setItem('testObject2',JSON.stringify(response.data));	
     						},function(errResponse){
@@ -58,6 +58,6 @@ myApp.controller('myCtrl', function($scope,$rootScope, $http,$window) {
                   range.push(i);
                 }
                 $scope.size = range;
-                console.log($scope.size);
+   
                 
 });
