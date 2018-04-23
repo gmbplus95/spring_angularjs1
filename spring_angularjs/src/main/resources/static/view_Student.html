@@ -10,7 +10,8 @@
     <script src="/js/angular.js"></script>
     <script src="/js/studentcourse.js"></script>
 </head>
-<body ng-app="myApp" ng-controller="myCtrl">
+<body ng-app="myApp"  ng-controller="myCtrl">
+	<h2>Chi Tiết Sinh Viên</h2>
 	<table class="table">
         <tr>
             <th>ID</th>
@@ -18,13 +19,14 @@
             <th>Student Age</th>
             <th>Student Location</th>
         </tr>
-        <tr >
+        <tr>
             <td>{{students1.studentid}}</td>
             <td>{{students1.studentName}}</td>
             <td>{{students1.studentAge}}</td>
             <td>{{students1.studentLocation}}</td>
-            
         </tr>
     </table>
+    <h4>Sinh viên {{students1.studentName}} đã đăng kí các khóa học sau: </h4>
+    <span ng-repeat="x in size"> {{students2[x].coursename}}</span>
 </body>
 </html>
