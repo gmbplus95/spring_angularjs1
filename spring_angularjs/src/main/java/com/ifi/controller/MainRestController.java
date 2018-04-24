@@ -61,26 +61,28 @@ public class MainRestController {
 //			response.sendRedirect("http://localhost:8082");
 //			
 //		}
-		@RequestMapping(value= "/add_student/",produces = {MediaType.APPLICATION_JSON_VALUE})
-		public void saveStudent2(@RequestBody StModel student ) {
+		@RequestMapping(value= "/add_student/")
+		public void saveStudent(@RequestBody StModel student ) {
 			studentRepo.save(student);		
 		}
 		
-		@PostMapping(value= "/edit_student2/")
-		public void editStudent2(@RequestParam StModel student ) {
-			studentRepo.save(student);
+		@RequestMapping(value= "/edit_student/")
+		public void editStudent(@RequestBody StModel student ) {
+			studentRepo.save(student);		
 		}
+		
+		
 		
 		@GetMapping(value="/viewStudent/saveco")
 		public void addCotoSt(@RequestParam("courseid") int courseid,
-								   @RequestParam("studentid") int studentid, HttpServletResponse response) throws IOException {
+							@RequestParam("studentid") int studentid, HttpServletResponse response) throws IOException {
 			StModel stmodel;
 			stmodel=studentRepo.findById(studentid).orElse(null);
 			CourseModel coursemodels;
 			coursemodels=courseRepo.findById(courseid).orElse(null);
 			stmodel.getCoursemodels().add(coursemodels);
 			studentRepo.save(stmodel);
-			response.sendRedirect("http://localhost:8082/viewStudent");
+			response.sendRedirect("http://localhost:8082/");
 		}
 		
 		//course 

@@ -44,7 +44,7 @@ myApp.controller('myCtrl', function($scope,$rootScope, $http,$window) {
                         url : 'http://localhost:8082/viewStudent/'+id,
                     }).then(function(response) {
                     	$window.localStorage.setItem('testObject',JSON.stringify(response.data));	
-                    	$window.location.href='http://localhost:8082/viewStudent';
+                    	// $window.location.href='http://localhost:8082/viewStudent';
                     
     						},function(errResponse){
 				            console.error('Error while fetching Users');
@@ -69,27 +69,59 @@ myApp.controller('myCtrl', function($scope,$rootScope, $http,$window) {
               $scope.students1=JSON.parse(localStorage.getItem('testObject'));
               $scope.students2=JSON.parse(localStorage.getItem('testObject2'));
                 var range = [];
-                for(var i=0;i<Object.keys($scope.students2).length;i++) {
+                for(var i=0;i<Object.size($scope.students2);i++) {
                   range.push(i);
                 }
                 $scope.size = range;
-                
+          $scope.reload=function()  {
+          	$window.location.reload();
+          } ;   
             //edit student
-            $scope.editStudent=function(id){
-                    $http({
-                        method : 'GET',
-                        url : 'http://localhost:8082/viewStudent/'+id,
-                    }).then(function(response) {
-                        $window.localStorage.setItem('editObject',JSON.stringify(response.data));   
-                        $window.location.href='http://localhost:8082/edit_student';
-                            },function(errResponse){
-                            console.error('Error while fetching Users');
-                            deferred.reject(errResponse);
-                            $scope.error='error getting'
-                        });
-            };
-         $rootScope.students3=JSON.parse(localStorage.getItem('editObject'));
-         console.log($rootScope.students3);
+            // $scope.editStudent=function(id){
+            //         $http({
+            //             method : 'GET',
+            //             url : 'http://localhost:8082/viewStudent/'+id,
+            //         }).then(function(response) {
+            //             $window.localStorage.setItem('editObject',JSON.stringify(response.data));   
+            //             $window.location.href='http://localhost:8082/edit_student';
+            //                 },function(errResponse){
+            //                 console.error('Error while fetching Users');
+            //                 deferred.reject(errResponse);
+            //                 $scope.error='error getting'
+            //             });
+            // };
+         // $scope.students3=JSON.parse(localStorage.getItem('editObject'));
+         // console.log($scope.students3);
 
+
+          $scope.editStudent2= function(student){
+                   var student={
+                		 studentid: $scope.students1.studentid,
+                		 studentName: $scope.studentName,
+                		 studentAge: $scope.studentAge,
+                		 studentLocation: $scope.studentLocation
+                	 };
+                     $http({
+                         method : 'POST',
+                         url : 'http://localhost:8082/edit_student/',
+                         data: student
+                     }).then(function(response) {
+                             $window.location.href='http://localhost:8082';
+                             console.log("thanh cong roi")
+
+                             },function(errresponse){
+                             
+                             $scope.error='error getting';
+                                alert("fail")
+                         });
+                 };
          
 });
+
+	Object.size = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};

@@ -20,6 +20,7 @@
 
 </style>
 <body ng-app="myApp" ng-controller="myCtrl">
+    <div class="container">
     <table class="table">
         <tr>
             <th>ID</th>
@@ -34,13 +35,14 @@
             <td>{{student.studentAge}}</td>
             <td>{{student.studentLocation}}</td>
             <td >
-                <a href="" ng-click="viewStudent(student.studentid)">View</a>
+                <a href="/viewStudent" ng-click="viewStudent(student.studentid)">View</a>
                 <a href="" ng-click="deleteStudent(student.studentid)">Delete</a>
-                <a href="" ng-click="editStudent(student.studentid)" >Edit</a>
+                <a href="/edit_student" ng-click="viewStudent(student.studentid)" >Edit</a>
             </td>
         </tr>
     </table>
     <a href="/add_student" >Thêm Sinh Viên</a>
+    </div>
 </body>
 
 </html>

@@ -9,26 +9,33 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/js/angular.js"></script>
-    <script src="/js/editStudent.js"></script>
+    <script src="/js/studentcourse.js"></script>
 
 </head>
 
-<body ng-app="myApp" ng-controller="myCtrl3">
+<body ng-app="myApp" ng-controller="myCtrl">
+    <div class="container">
     <h3>Edit Student</h3>
-    <form method="POST" action="">
-        <br> Student id:
-        <input type="text" name="studentid" ng-model="studentid"  ng-value="students3.studentid" readonly="readonly" > 
+    <form name="myForm2" ng-submit="editStudent2(stModel)" >
+        <br> <div class="col-5">Student id: </div>
+        <input class="col-5" type="text" name="studentid" ng-model="studentid"  ng-value="students1.studentid" readonly="readonly" > 
         <br>
-        <br> Student name:
-        <input type="text" name="studentName" ng-model="studentName" ng-value="students3.studentName" >
-        </br>
-        <br> Student age:
-        <input type="text" name="studentAge" ng-model="studentAge" ng-value="students3.studentAge"  >
-        <br> Student location:
-        <input type="text" name="studentLocation" ng-model="studentLocation" ng-value="students3.studentLocation"  >
+        <div class="col-3">Student name:</div>
+        <input  class="col-5" type="text" name="studentName" ng-model="studentName" placeholder="{{students1.studentName}}" required >
+        
         <br>
-        <input type="submit" value="Submit" ng-click="editStudent2(stModel)">
+        <div class="col-3">Student age:</div>
+        <input type="text" name="studentAge" ng-model="studentAge" placeholder="{{students1.studentAge}}" required>
+     
+        <br>
+        <div class="col-3"> Student location:</div>
+        <input class="col-5" type="text" name="studentLocation" ng-model="studentLocation" placeholder="{{students1.studentLocation}}"  required>
+     
+        <br>
+        <br>
+        <input class="btn btn-primary" type="submit" value="Submit" >
     </form>
+    </div>
 </body>
 
 </html>

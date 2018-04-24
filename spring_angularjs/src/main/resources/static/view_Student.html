@@ -10,8 +10,12 @@
     <script src="/js/angular.js"></script>
     <script src="/js/studentcourse.js"></script>
     <style type="text/css">
-        
-             .comma:empty {
+    		*{
+    			margin: 0px;
+    			padding: 0px;
+    		}
+
+            .comma:empty {
           display: none;
             }
 
@@ -21,6 +25,7 @@
     </style>
 </head>
 <body ng-app="myApp"  ng-controller="myCtrl">
+	<div class="container">
 	<h2>Chi Tiết Sinh Viên</h2>
 	<table class="table">
         <tr>
@@ -42,10 +47,14 @@
 
     <form method="GET" action="/viewStudent/saveco">
         <input type="hidden" name="studentid" value={{students1.studentid}}>
-        <select class="form-control" name="courseid" id="courseid">
+        <div class="col-xs-3">
+        <select class="form-control" name="courseid" id="courseid" >
             <option ng-repeat="course in courses" value={{course.courseid}}>{{course.coursename}}</option>
         </select>
+        </div>
         <input class="btn btn-primary" type="submit" value="Add Course">
     </form>
+
+    </div>
 </body>
 </html>

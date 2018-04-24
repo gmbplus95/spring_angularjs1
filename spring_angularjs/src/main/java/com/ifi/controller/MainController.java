@@ -19,11 +19,7 @@ public class MainController {
 		public String addStundent(){
 			return "add_student.html";
 		}
-//	@GetMapping(value="/viewStudent/{studentid}")
-//	public String viewSt(@PathVariable("studentid") int studentid){
-//		StModel stmodel=studentRepo.findById(studentid).orElse(null);
-//		return "view_Student.html";
-//	}
+	
 	@RequestMapping("/viewStudent")
 	public String addStunsdent(){
 		return "view_Student.html";
