@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Student</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/js/angular.js"></script>
+    <script src="/js/editStudent.js"></script>
+
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl3">
+    <h3>Edit Student</h3>
+    <form method="POST" action="">
+        <br> Student id:
+        <input type="text" name="studentid" ng-model="studentid"  ng-value="students3.studentid" readonly="readonly" > 
+        <br>
+        <br> Student name:
+        <input type="text" name="studentName" ng-model="studentName" ng-value="students3.studentName" >
+        </br>
+        <br> Student age:
+        <input type="text" name="studentAge" ng-model="studentAge" ng-value="students3.studentAge"  >
+        <br> Student location:
+        <input type="text" name="studentLocation" ng-model="studentLocation" ng-value="students3.studentLocation"  >
+        <br>
+        <input type="submit" value="Submit" ng-click="editStudent2(stModel)">
+    </form>
+</body>
+
+</html>

@@ -25,20 +25,23 @@
 </style>
 <body ng-app="myApp" ng-controller="myCtrl2">
     <h1>Add Student</h1>
-    <form method="POST" action="/add_student">
+    <form method="POST" action="">
 
-        <br> Student name:
+     	  <br>
+        <input type="hidden" name="studentid"  ng-model="studentid">
         <br>
-        <input type="text" name="studentName"  ng-model="StModel.studentName">
+          Student name:
+        <br>
+        <input type="text" name="studentName"  ng-model="studentName">
         </x>
         <br> Student age:
         <br>
-        <input type="text" name="studentAge"  ng-model="StModel.studentAge">
+        <input type="text" name="studentAge"  ng-model="studentAge">
         <br> Student location:
         <br>
-        <input type="text"  name="studentLocation"  ng-model="StModel.studentLocation">
+        <input type="text"  name="studentLocation"  ng-model="studentLocation">
         <br>
-        <input type="submit" value="Create">
+        <input type="submit" value="Create" ng-click="addStudent(stModel)">
     </form>
 </body>
 

@@ -28,5 +28,10 @@ public class MainController {
 	public String addStunsdent(){
 		return "view_Student.html";
 	}
+
+	@RequestMapping("/edit_student")
+	public String editStundent(){
+		return "edit_student.html";
+	}
 	
 }

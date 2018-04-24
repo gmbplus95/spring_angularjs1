@@ -9,6 +9,16 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/js/angular.js"></script>
     <script src="/js/studentcourse.js"></script>
+    <style type="text/css">
+        
+             .comma:empty {
+          display: none;
+            }
+
+            .comma:not(:first-child):before {
+            content: ", ";
+            }
+    </style>
 </head>
 <body ng-app="myApp"  ng-controller="myCtrl">
 	<h2>Chi Tiết Sinh Viên</h2>
@@ -26,7 +36,16 @@
             <td>{{students1.studentLocation}}</td>
         </tr>
     </table>
-    <h4>Sinh viên {{students1.studentName}} đã đăng kí các khóa học sau: </h4>
-    <span ng-repeat="x in size"> {{students2[x].coursename}}</span>
+    <h4>Sinh viên {{students1.studentName}} đã đăng kí các khóa học sau: <span class= "comma" ng-repeat="x in size"> {{students2[x].coursename}}</span></h4>
+    
+    <p>Add Course</p>
+
+    <form method="GET" action="/viewStudent/saveco">
+        <input type="hidden" name="studentid" value={{students1.studentid}}>
+        <select class="form-control" name="courseid" id="courseid">
+            <option ng-repeat="course in courses" value={{course.courseid}}>{{course.coursename}}</option>
+        </select>
+        <input class="btn btn-primary" type="submit" value="Add Course">
+    </form>
 </body>
 </html>
