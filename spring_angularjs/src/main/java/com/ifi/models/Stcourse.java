@@ -1,5 +1,5 @@
 package com.ifi.models;
-
+//tạo class lấy id của student và course
 public class Stcourse {
 			private int studentid;
 			private int courseid;

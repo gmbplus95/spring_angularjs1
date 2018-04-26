@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="/js/angular.js"></script>
-    <script src="/js/studentcourse.js"></script>
     <style type="text/css">
     		*{
     			margin: 0px;
@@ -16,7 +14,7 @@
     		}
 
             .comma:empty {
-          display: none;
+          			display: none;
             }
 
             .comma:not(:first-child):before {
@@ -24,7 +22,7 @@
             }
     </style>
 </head>
-<body ng-app="myApp"  ng-controller="myCtrl">
+<body ng-app="myApp"  ng-controller="myCtrl2">
 	<div class="container">
 	<h2>Chi Tiết Sinh Viên</h2>
 	<table class="table">
@@ -41,7 +39,7 @@
             <td>{{students1.studentLocation}}</td>
         </tr>
     </table>
-    <h4>Sinh viên {{students1.studentName}} đã đăng kí các khóa học sau: <span class= "comma" ng-repeat="x in size"> {{students2[x].coursename}}</span></h4>
+    <h4>Sinh viên {{students1.studentName}} đã đăng kí các khóa học sau: <span class= "comma" ng-repeat="x in size"> {{students2[x].coursename}} <a href="" ng-click="deleteStudentCourse(students1.studentid,students2[x].courseid)"> Xóa </a></span></h4>
     
     <p>Add Course</p>
 
@@ -56,5 +54,7 @@
     </form>
 
     </div>
+    <script src="/js/angular.js"></script>
+    <script src="/js/studentcourse.js"></script>
 </body>
 </html>
