@@ -37,7 +37,7 @@ myApp.controller('myCtrl', function($scope,$rootScope, $http,$window) {
 				            $scope.error='error getting'
    				 		});
 					};
-	//view by id
+	//find student by id to view and edit
 	$scope.viewStudent = function(id) {
                     $http({
                         method : 'GET',
@@ -63,7 +63,7 @@ myApp.controller('myCtrl', function($scope,$rootScope, $http,$window) {
 				            $scope.error='error getting'
    				 		});
                     
-                    	
+           	
                     
                 };	
               $scope.students1=JSON.parse(localStorage.getItem('testObject'));
@@ -73,30 +73,25 @@ myApp.controller('myCtrl', function($scope,$rootScope, $http,$window) {
                   range.push(i);
                 }
                 $scope.size = range;
-          $scope.reload=function()  {
-          	$window.location.reload();
-          } ;   
-            //edit student
-            // $scope.editStudent=function(id){
+       
+            //view edit student
+            // $scope.viewEditStudent=function(id){
             //         $http({
             //             method : 'GET',
             //             url : 'http://localhost:8082/viewStudent/'+id,
             //         }).then(function(response) {
             //             $window.localStorage.setItem('editObject',JSON.stringify(response.data));   
-            //             $window.location.href='http://localhost:8082/edit_student';
             //                 },function(errResponse){
             //                 console.error('Error while fetching Users');
             //                 deferred.reject(errResponse);
             //                 $scope.error='error getting'
             //             });
+               
             // };
-         // $scope.students3=JSON.parse(localStorage.getItem('editObject'));
-         // console.log($scope.students3);
-
-
+         //edit Student now
           $scope.editStudent2= function(student){
                    var student={
-                		 studentid: $scope.students1.studentid,
+                		 studentid: $scope.students1.studentid, 
                 		 studentName: $scope.studentName,
                 		 studentAge: $scope.studentAge,
                 		 studentLocation: $scope.studentLocation
@@ -115,7 +110,47 @@ myApp.controller('myCtrl', function($scope,$rootScope, $http,$window) {
                                 alert("fail")
                          });
                  };
+
+          //get course by id
+          $scope.getCoursebyId= function(id){
+                                $http({
+                                      method : 'GET',
+                                      url : 'http://localhost:8082/viewCourse/'+id,
+                                  }).then(function(response) {
+                                  $window.localStorage.setItem('addObject',JSON.stringify(response.data));
+                                    // $window.location.href='http://localhost:8082/viewStudent';
+                                  
+                              },function(errResponse){
+                                  console.error('Error while fetching Users');
+                                  deferred.reject(errResponse);
+                                  $scope.error='error getting'
+                                });
+
+          }  ;
+        
+         //add course for student
          
+                   $scope.addCourseForStudent=function(stcourse){
+                    var stcourse ={
+                      studentid:$scope.studentid,
+                      courseid:$scope.courseid
+                  };
+                    
+                    
+                    $http({
+                         method : 'POST',
+                         url : 'http://localhost:8082/add_course_student/',
+                         data: stcourse
+                     }).then(function(response) {
+                             $window.location.href='http://localhost:8082';
+                             console.log("thanh cong roi")
+
+                             },function(errresponse){
+                             
+                             $scope.error='error getting';
+                                alert("fail")
+                         });
+         };
 });
 
 	Object.size = function(obj) {

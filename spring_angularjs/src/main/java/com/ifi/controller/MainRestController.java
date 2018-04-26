@@ -1,24 +1,18 @@
 package com.ifi.controller;
 
-import java.io.IOException;
 import java.util.Set;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ifi.models.CourseModel;
-import com.ifi.models.CourseRepo;
 import com.ifi.models.StModel;
-import com.ifi.models.StudentRepo;
+import com.ifi.models.Stcourse;
+import com.ifi.repository.CourseRepo;
+import com.ifi.repository.StudentRepo;
 
 @RestController
 public class MainRestController {
@@ -70,24 +64,33 @@ public class MainRestController {
 		public void editStudent(@RequestBody StModel student ) {
 			studentRepo.save(student);		
 		}
-		
-		
-		
-		@GetMapping(value="/viewStudent/saveco")
-		public void addCotoSt(@RequestParam("courseid") int courseid,
-							@RequestParam("studentid") int studentid, HttpServletResponse response) throws IOException {
-			StModel stmodel;
-			stmodel=studentRepo.findById(studentid).orElse(null);
-			CourseModel coursemodels;
-			coursemodels=courseRepo.findById(courseid).orElse(null);
-			stmodel.getCoursemodels().add(coursemodels);
+
+//		@GetMapping(value="/viewStudent/saveco")
+//		public void addCotoSt(@RequestParam("courseid") int courseid,
+//							@RequestParam("studentid") int studentid, HttpServletResponse response) throws IOException {
+//			StModel stmodel;
+//			stmodel=studentRepo.findById(studentid).orElse(null);
+//			CourseModel coursemodels;
+//			coursemodels=courseRepo.findById(courseid).orElse(null);
+//			stmodel.getCoursemodels().add(coursemodels);
+//			studentRepo.save(stmodel);
+//			response.sendRedirect("http://localhost:8082/");
+//		}
+		@RequestMapping(value= "/add_course_student/")
+		public void addCourseStudent(@RequestBody Stcourse stcourse ) {
+			CourseModel course=courseRepo.findById(stcourse.getCourseid()).orElse(null);
+			StModel stmodel =studentRepo.findById(stcourse.getStudentid()).orElse(null);
+			stmodel.getCoursemodels().add(course);
 			studentRepo.save(stmodel);
-			response.sendRedirect("http://localhost:8082/");
 		}
-		
 		//course 
 		@RequestMapping(value = "/getAllCourse")
 		  public Iterable<CourseModel> retrieveAllCourses() {
 			return courseRepo.findAll();
+		}
+		
+		@RequestMapping(value = "/viewCourse/{courseid}")
+		public CourseModel retrieveCourseById(@PathVariable("courseid") int courseid) {
+			return	courseRepo.findById(courseid).orElse(null);
 		}
 }

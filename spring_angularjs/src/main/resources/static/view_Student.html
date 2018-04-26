@@ -45,11 +45,11 @@
     
     <p>Add Course</p>
 
-    <form method="GET" action="/viewStudent/saveco">
-        <input type="hidden" name="studentid" value={{students1.studentid}}>
+    <form ng-submit="addCourseForStudent(stcourse)">
+        <input type="hidden" name="studentid" ng-model="studentid" ng-init="studentid=students1.studentid" >
         <div class="col-xs-3">
-        <select class="form-control" name="courseid" id="courseid" >
-            <option ng-repeat="course in courses" value={{course.courseid}}>{{course.coursename}}</option>
+        <select class="form-control" name="courseid"  ng-model="courseid">
+            <option ng-repeat="course in courses"  ng-selected="courseid =course.courseid" ng-value="course.courseid">{{course.coursename}}</option>
         </select>
         </div>
         <input class="btn btn-primary" type="submit" value="Add Course">
