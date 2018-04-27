@@ -8,44 +8,53 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 </head>
 <style type="text/css">
-    *{
-        margin:0px;
-        padding: 0px;
-    }
-    
-
+* {
+    margin: 0px;
+    padding: 0px;
+}
 </style>
+
 <body ng-app="myApp" ng-controller="myCtrl">
     <div class="container">
-    <table class="table">
-        <tr>
-            <th>ID</th>
-            <th>Student Name</th>
-            <th>Student Age</th>
-            <th>Student Location</th>
-            <th>Action</th>
-        </tr>
-        <tr ng-repeat="student in students">
-            <td>{{student.studentid}}</td>
-            <td>{{student.studentName}}</td>
-            <td>{{student.studentAge}}</td>
-            <td>{{student.studentLocation}}</td>
-            <td >
-                <a href="/viewStudent" ng-click="viewStudent(student.studentid)">View</a>
-                <a href="" ng-click="deleteStudent(student.studentid)">Delete</a>
-                <a href="/edit_student" ng-click="viewStudent(student.studentid)" >Edit</a>
-            </td>
-        </tr>
-    </table>
-    <a href="/add_student" >Thêm Sinh Viên</a>
-    <br>
-    <a href="/viewCourse">Danh Sách Môn Học</a>
+        <a class="btn btn-link" href="/add_student">Thêm Sinh Viên</a>
+        <br>
+        <a class="btn btn-link" href="/viewCourse">Danh Sách Môn Học</a>
+        <h2 class="text-center"> Danh Sach Tat Ca Cac Sinh Vien Cua Truong</h2>
+        <form class="form-inline">
+            <div class="form-group">
+                <label>Search</label>
+                <input type="text" name="" ng-model="search" class="form-control" placeholder="Search">
+            </div>
+        </form>
+        <br>
+        <table class="table" class="table-hover">
+            <tr>
+                <th>ID</th>
+                <th>Student Name</th>
+                <th>Student Age</th>
+                <th>Student Location</th>
+                <th>Action</th>
+            </tr>
+            <tr dir-paginate="student in students | filter: search|  itemsPerPage:8">
+                <td>{{student.studentid}}</td>
+                <td>{{student.studentName}}</td>
+                <td>{{student.studentAge}}</td>
+                <td>{{student.studentLocation}}</td>
+                <td>
+                    <a class="btn btn-info" href="/viewStudent" ng-click="viewStudent(student.studentid)">View</a>
+                    <a class="btn btn-danger" href="" ng-click="deleteStudent(student.studentid)">Delete</a>
+                    <a class="btn btn-primary" href="/edit_student" ng-click="viewStudent(student.studentid)">Edit</a>
+                </td>
+            </tr>
+            <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" auto-hide>
+            </dir-pagination-controls>
+        </table>
     </div>
-     <script src="/js/angular.js"></script>
+    <script src="/js/angular.js"></script>
     <script src="/js/studentcourse.js"></script>
+    <script src="/js/dirPagination.js"></script>
 </body>
 
 </html>

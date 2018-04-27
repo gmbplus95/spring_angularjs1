@@ -11,7 +11,15 @@
 </head>
 <body ng-app="myApp" ng-controller="myCtrl3">
 	
-	<div class="container">
+<div class="container">
+    <h2 class="text-center"> Danh Sach Tat Ca Cac Khoa Hoc</h2>
+    <form class="form-inline">
+            <div class="form-group">
+                <label>Search</label>
+                <input type="text" name="" ng-model="search" class="form-control" placeholder="Search">
+            </div>
+        </form>
+        <br>
     <table class="table">
         <tr>
             <th>ID</th>
@@ -19,20 +27,20 @@
             <th>Number of Student</th>
             <th>Action</th>
         </tr>
-        <tr ng-repeat="course in courses">
+        <tr ng-repeat="course in courses | filter: search">
             <td>{{course.courseid}}</td>
             <td>{{course.coursename}}</td>
-            <td>{{sizes}}</td>
+            <td  ng-init="init(course.courseid)" >{{leader[course.courseid]}}</td>
             <td>
-            	<a href="" ng-click="viewCourse(course.courseid)">Detail</a>
-                <a href="" ng-click="deleteCourse(course.courseid)">Delete</a>
-                <a href="/edit_course" ng-click="viewCourse(course.courseid)" >Edit</a>
+                <a class="btn btn-info" href="/course_detail" ng-click="viewCourse(course.courseid)">Detail</a>
+                <a class="btn btn-warning" href="" ng-click="deleteCourse(course.courseid)">Delete</a>
+                <a class="btn btn-primary" href="/edit_course" ng-click="viewCourse(course.courseid)" >Edit</a>
             </td>
         </tr>
     </table>
     <a href="/add_course" >Thêm Khóa Học</a>
 
-	</div>
+</div>
 	
 	<script src="/js/angular.js"></script>
     <script src="/js/course.js"></script>

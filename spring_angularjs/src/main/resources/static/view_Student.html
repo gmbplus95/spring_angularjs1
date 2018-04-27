@@ -39,7 +39,7 @@
             <td>{{students1.studentLocation}}</td>
         </tr>
     </table>
-    <h4>Sinh viên {{students1.studentName}} đã đăng kí các khóa học sau: <span class= "comma" ng-repeat="x in size"> {{students2[x].coursename}} <a href="" ng-click="deleteStudentCourse(students1.studentid,students2[x].courseid)"> Xóa </a></span></h4>
+    <h4>Sinh viên {{students1.studentName}} đã đăng kí các khóa học sau: <span class= "comma" ng-repeat="x in size"> {{students2[x].coursename}} <a  class="btn btn-danger" href="" ng-click="deleteStudentCourse(students1.studentid,students2[x].courseid)"> Xóa </a></span></h4>
     
     <p>Add Course</p>
 
@@ -56,5 +56,6 @@
     </div>
     <script src="/js/angular.js"></script>
     <script src="/js/studentcourse.js"></script>
+    <script src="/js/dirPagination.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', []);
+var myApp = angular.module('myApp', ['angularUtils.directives.dirPagination']);
 myApp.controller('myCtrl', function($scope, $http,$window) {
     //get all student
     $http.get("http://localhost:8082/getAllStudent")

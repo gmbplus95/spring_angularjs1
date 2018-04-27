@@ -100,4 +100,10 @@ public class MainRestController {
 			courseRepo.save(course);
 		}
 		
+		@RequestMapping(value = "/courseDetail/{courseid}")
+		public Set<StModel> viewStudentByCourseId(@PathVariable("courseid") int courseid) {
+			CourseModel course=courseRepo.findById(courseid).orElse(null);
+			return course.getStModels();
+		}
+		
 }

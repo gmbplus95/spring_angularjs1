@@ -38,5 +38,10 @@ public class MainController {
 	public String edit_course(){
 		return "edit_course.html";
 	}
+	
+	@RequestMapping("/course_detail")
+	public String course_detail(){
+		return "course_detail.html";
+	}
 
 }

@@ -1,5 +1,5 @@
 var myApp = angular.module('myApp', []);
-myApp.controller('myCtrl3', function($scope, $http,$window) {
+myApp.controller('myCtrl3', function($scope, $http,$window,$q) {
 
 	//get all course
     $http.get("http://localhost:8082/getAllCourse")
@@ -13,19 +13,21 @@ myApp.controller('myCtrl3', function($scope, $http,$window) {
             $scope.error='error getting'
     });
     //get number of course's student
-	$scope.noOfStudent=function(id){
-    					$http({
-                         method : 'GET',
-                         url : 'http://localhost:8082/numberofStudent/'+ id
-                     }).then(function(response) {
-                    	 	$scope.sizes=response.data
-                             },function(errresponse){
-                             
-                             $scope.error='error getting';
-                                alert("fail")
-                         });		
-    };
-    $scope.noOfStudent(1);
+   
+    $scope.init = function(id){
+    	   $scope.leader = {};
+                $http.get('http://localhost:8082/numberofStudent/'+id)
+                .then(function (response) {
+                    $scope.leader[id] = response.data;// gan gia tri cung voi id cua no
+                })
+                ,function(errResponse){
+		            console.error('Error while fetching Users');
+		            deferred.reject(errResponse);
+		            $scope.error='error getting'
+                }
+};
+
+  
      //delete by id
     $scope.deleteCourse = function(id) {
                     $http({
@@ -51,9 +53,7 @@ myApp.controller('myCtrl3', function($scope, $http,$window) {
                          method : 'POST',
                          url : 'http://localhost:8082/add_course/',
                          data: course
-        
-					// params: {studentName: $scope.studentName,studentAge: $scope.studentAge,studentLocation: $scope.studentLocation}
-                     }).then(function(response) {
+                             }).then(function(response) {
                              $window.location.href='http://localhost:8082/viewCourse';
                              console.log("thanh cong roi")
                              },function(errresponse){
@@ -77,8 +77,25 @@ myApp.controller('myCtrl3', function($scope, $http,$window) {
 				            $scope.error='error getting'
    				 		});
                  
+                $http({
+                        method : 'GET',
+                        url : 'http://localhost:8082/courseDetail/'+id,
+                    }).then(function(response) {
+                        $window.localStorage.setItem('testObject5',JSON.stringify(response.data));  
+                            },function(errResponse){
+                            console.error('Error while fetching Users');
+                            deferred.reject(errResponse);
+                            $scope.error='error getting'
+                        });
                 };	
-             $scope.courses1=JSON.parse(localStorage.getItem('testObject3'));
+            $scope.courses1=JSON.parse(localStorage.getItem('testObject3'));
+            $scope.courses2=JSON.parse(localStorage.getItem('testObject5'));
+             console.log($scope.courses2)  ; 
+             var range = [];
+                for(var i=0;i<Object.size($scope.courses2);i++) {
+                  range.push(i);
+                }
+                $scope.size = range;
      //edit course
 
       $scope.editCourse= function(course){
@@ -100,8 +117,14 @@ myApp.controller('myCtrl3', function($scope, $http,$window) {
                                 alert("fail")
                          });
                  };
-    //get number of student
-
-    
 
 });
+
+    //dinh nghia ham size
+    Object.size = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
