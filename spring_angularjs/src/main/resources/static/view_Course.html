@@ -27,7 +27,7 @@
             <th>Number of Student</th>
             <th>Action</th>
         </tr>
-        <tr ng-repeat="course in courses | filter: search">
+        <tr dir-paginate="course in courses | filter: search | itemsPerPage:8">
             <td>{{course.courseid}}</td>
             <td>{{course.coursename}}</td>
             <td  ng-init="init(course.courseid)" >{{leader[course.courseid]}}</td>
@@ -37,6 +37,8 @@
                 <a class="btn btn-primary" href="/edit_course" ng-click="viewCourse(course.courseid)" >Edit</a>
             </td>
         </tr>
+        <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" auto-hide>
+            </dir-pagination-controls>
     </table>
     <a href="/add_course" >Thêm Khóa Học</a>
 
@@ -44,5 +46,6 @@
 	
 	<script src="/js/angular.js"></script>
     <script src="/js/course.js"></script>
+    <script src="/js/dirPagination.js"></script>
 </body>
 </html>

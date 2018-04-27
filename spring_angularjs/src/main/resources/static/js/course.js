@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', []);
+var myApp = angular.module('myApp', ['angularUtils.directives.dirPagination']);
 myApp.controller('myCtrl3', function($scope, $http,$window,$q) {
 
 	//get all course
