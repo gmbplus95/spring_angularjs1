@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Course List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+</head>
+<body ng-app="myApp" ng-controller="myCtrl3">
+	
+	<div class="container">
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Course Name</th>
+            <th>Number of Student</th>
+            <th>Action</th>
+        </tr>
+        <tr ng-repeat="course in courses">
+            <td>{{course.courseid}}</td>
+            <td>{{course.coursename}}</td>
+            <td>{{sizes}}</td>
+            <td>
+            	<a href="" ng-click="viewCourse(course.courseid)">Detail</a>
+                <a href="" ng-click="deleteCourse(course.courseid)">Delete</a>
+                <a href="/edit_course" ng-click="viewCourse(course.courseid)" >Edit</a>
+            </td>
+        </tr>
+    </table>
+    <a href="/add_course" >Thêm Khóa Học</a>
+
+	</div>
+	
+	<script src="/js/angular.js"></script>
+    <script src="/js/course.js"></script>
+</body>
+</html>

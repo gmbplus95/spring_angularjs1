@@ -42,19 +42,6 @@ public class MainRestController {
 			return stmodel.getCoursemodels();
 		}
 		
-//		@PostMapping(value= "/add_student")
-//		public void saveSt(
-//				@RequestParam(name="studentName") String studentName,
-//				@RequestParam(name="studentAge") String studentAge,
-//				@RequestParam(name="studentLocation") String studentLocation,HttpServletResponse response) throws IOException {
-//			StModel stModel=new StModel();
-//				stModel.setStudentName(studentName);
-//				stModel.setStudentAge(studentAge);
-//				stModel.setStudentLocation(studentLocation);
-//			studentRepo.save(stModel);
-//			response.sendRedirect("http://localhost:8082");
-//			
-//		}
 		@RequestMapping(value= "/add_student/")
 		public void saveStudent(@RequestBody StModel student ) {
 			studentRepo.save(student);		
@@ -78,9 +65,30 @@ public class MainRestController {
 			return courseRepo.findAll();
 		}
 		
+		@RequestMapping(value = "/deleteCourse/{courseid}")
+		public void deleteCourseById(@PathVariable("courseid") int courseid) {
+			CourseModel coursemodel=courseRepo.findById(courseid).orElse(null);
+			courseRepo.delete(coursemodel);
+		}
+		
+		@RequestMapping(value= "/add_course/")
+		public void saveCourse(@RequestBody CourseModel coursemodel ) {
+			courseRepo.save(coursemodel);		
+		}
+		
 		@RequestMapping(value = "/viewCourse/{courseid}")
 		public CourseModel retrieveCourseById(@PathVariable("courseid") int courseid) {
 			return	courseRepo.findById(courseid).orElse(null);
+		}
+		
+		@RequestMapping(value= "/edit_course/")
+		public void editCourse(@RequestBody CourseModel coursemodel ) {
+			courseRepo.save(coursemodel);		
+		}
+		
+		@RequestMapping(value= "/numberofStudent/{courseid}")
+		public int numberofStCourse(@PathVariable int courseid ) {
+			return courseRepo.findStudentByCourseId(courseid);
 		}
 		
 		@RequestMapping(value= "/delete_course_student/")

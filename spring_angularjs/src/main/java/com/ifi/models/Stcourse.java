@@ -3,6 +3,19 @@ package com.ifi.models;
 public class Stcourse {
 			private int studentid;
 			private int courseid;
+			private int sizes;
+			public Stcourse(int studentid, int courseid, int sizes) {
+				super();
+				this.studentid = studentid;
+				this.courseid = courseid;
+				this.sizes = sizes;
+			}
+			public int getSizes() {
+				return sizes;
+			}
+			public void setSizes(int sizes) {
+				this.sizes = sizes;
+			}
 			public int getStudentid() {
 				return studentid;
 			}
